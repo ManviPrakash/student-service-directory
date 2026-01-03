@@ -1,0 +1,232 @@
+<!-- does not talks to the database it is just showing inputs/buttons and a place to display results  -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Service Directory</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background:#f6f7fb;
+      color:#111;
+    }
+
+    /* gives a top bar */
+    header {
+      background:#0b3d91;
+      color:white;
+      padding:20px;
+    }
+
+    header h1 {
+      margin:0;
+      font-size:20px;
+    }
+
+    header p {
+      margin:6px 0 0;
+      opacity:0.9;
+      font-size:14px;
+    }
+
+    /* .container helps to centers the content */
+    .container {
+      max-width: 980px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    /* .grid put cards side by side */
+    .grid {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+
+    /* .card helps to make a box look */
+    .card {
+      background:white;
+      border-radius:12px;
+      padding:16px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      margin:0 0 12px;
+      font-size:16px;
+    }
+
+    label {
+      display:block;
+      font-size:13px;
+      margin:10px 0 6px;
+    }
+
+    input {
+      width:100%;
+      padding:10px;
+      border:1px solid #d7dbe7;
+      border-radius:10px;
+    }
+
+    button {
+      padding:10px 12px;
+      border:0;
+      border-radius:10px;
+      cursor:pointer;
+    }
+
+    .btn {
+      background:#0b3d91;
+      color:white;
+    }
+
+    .btn-secondary {
+      background:#e9ecf5;
+    }
+
+    .btn-danger {
+      background:#c62828;
+      color:white;
+    }
+
+    .row {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .row > * {
+      flex:1;
+    }
+
+    .list {
+      margin-top:12px;
+      display:grid;
+      gap:10px;
+    }
+
+    .item {
+      background:#fff;
+      border:1px solid #eef0f7;
+      border-radius:12px;
+      padding:12px;
+    }
+
+    .item-title {
+      font-weight:700;
+    }
+
+    .muted {
+      color:#555;
+      font-size:13px;
+      margin-top:6px;
+    }
+
+    .actions {
+      margin-top:10px;
+      display:flex;
+      gap:8px;
+    }
+
+    a {
+      color:#0b3d91;
+      text-decoration:none;
+    }
+
+    a:hover {
+      text-decoration:underline;
+    }
+
+    /* media query makes it mobile-friendly */
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- top header section -->
+  <header>
+    <h1>Service Directory</h1>
+    <p>A simple directory to list, filter, update, and manage student support services.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="grid">
+
+      <!-- filter card -->
+      <div class="card">
+        <h2>Filter Services</h2>
+
+        <label for="cat">Category (optional)</label>
+
+        <div class="row">
+          <input id="cat" placeholder="wellness / academic / financial" />
+          <button class="btn-secondary" id="loadBtn">Load</button>
+        </div>
+      </div>
+
+      <!-- add/edit service card -->
+      <div class="card">
+        <h2 id="formTitle">Add a Service</h2>
+
+        <form id="form">
+
+          <!-- this hidden field is used to detect edit vs add -->
+          <!-- if editId has a value -> update (PUT) -->
+          <!-- if editId is empty -> create (POST) -->
+          <input type="hidden" id="editId" />
+
+          <label>Title *</label>
+          <input id="title" required />
+
+          <label>Category *</label>
+          <input id="category" required />
+
+          <label>Description</label>
+          <input id="description" />
+
+          <label>URL</label>
+          <!-- type="url" enables browser-level url validation -->
+          <input id="url" type="url" placeholder="https://example.com" />
+
+          <div class="actions">
+            <button class="btn" type="submit" id="saveBtn">Save</button>
+            <button
+              class="btn-secondary"
+              type="button"
+              id="cancelBtn"
+              style="display:none;"
+            >
+              Cancel
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+    <!-- results section -->
+    <div class="card" style="margin-top:16px;">
+      <h2>Results</h2>
+
+      <!-- javascript dynamically inserts service items here -->
+      <div class="list" id="list"></div>
+    </div>
+
+  </div>
+
+  <!-- using app.js to handle all frontend logic and api calls -->
+  <script src="app.js"></script>
+
+</body>
+</html>
