@@ -2,7 +2,15 @@
 
 A full-stack web application that helps students discover, manage, and organize student support services such as wellness, academic, and financial resources.
 
-This project was built to demonstrate practical skills in application development, API design, and user-focused digital services.
+This project was built to demonstrate practical skills in application development, REST API design, and user-focused digital services.
+
+---
+
+## 🎯 Problem This Project Solves
+
+Students often struggle to find reliable and organized information about available support services.
+
+This application provides a centralized directory where services can be easily added, updated, filtered, and managed — improving accessibility and decision-making.
 
 ---
 
@@ -21,19 +29,19 @@ This project was built to demonstrate practical skills in application developmen
 
 ## 🛠️ Tech Stack
 
-**Frontend**
+Frontend:
 - HTML
 - CSS
 - Vanilla JavaScript
 
-**Backend**
+Backend:
 - Node.js
 - Express.js
 
-**Database**
+Database:
 - SQLite
 
-**Security & Best Practices**
+Security & Best Practices:
 - Helmet for HTTP security headers
 - Input validation
 - Safe HTML rendering to prevent XSS
@@ -45,58 +53,42 @@ This project was built to demonstrate practical skills in application developmen
 student-service-directory/
 │
 ├── public/
-│ ├── index.html
-│ └── app.js
+│   ├── index.html
+│   └── app.js
 │
 ├── db.js
 ├── server.js
 ├── package.json
 └── README.md
 
-
-
----
-
-## 🎯 Problem This Project Solves
-
-Students often struggle to find reliable and organized information about available support services.
-
-This application provides a centralized directory where services can be easily added, updated, filtered, and managed — improving accessibility and decision-making.
-
 ---
 
 ## ▶️ How to Run Locally
 
-1. Clone the repository
-```bash
+1. Clone the repository  
 git clone https://github.com/ManviPrakash/student-service-directory
 
-
-1-Install dependencies
-
+2. Install dependencies  
 npm install
 
-
-2-Start the server
-
+3. Start the server  
 node server.js
 
-
-3-Open in browser
-
+4. Open in browser  
 http://localhost:3000
 
-📌 Future Improvements
+---
 
-Authentication and role-based access
+## 📌 Future Improvements
 
-Cloud database (Azure / AWS)
+- Authentication and role-based access
+- Cloud database integration (Azure / AWS)
+- Analytics dashboard for usage insights
+- Accessibility enhancements (WCAG compliance)
 
-Analytics dashboard for usage insights
+---
 
-Accessibility enhancements (WCAG)
+## 👩‍💻 Author
 
-👩‍💻 Author
-
-Built by Manvi
+Built by Manvi  
 Information Technology Student
