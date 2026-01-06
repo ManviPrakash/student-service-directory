@@ -50,6 +50,7 @@ Security & Best Practices:
 
 ## 📂 Project Structure
 
+```
 student-service-directory/
 │
 ├── public/
@@ -60,7 +61,7 @@ student-service-directory/
 ├── server.js
 ├── package.json
 └── README.md
-
+```
 ---
 
 ## ▶️ How to Run Locally
