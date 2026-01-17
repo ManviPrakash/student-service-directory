@@ -3,6 +3,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const path = require("path");
 const db = require("./db");
 
 const app = express();
@@ -10,10 +11,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(helmet());
 app.use(cors());
+
 // allows reading json body from post
 app.use(express.json());
+
 // will help to open html in browser from the same server for ui
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 /**
  * helper function to validate http / https urls
@@ -155,5 +158,5 @@ app.delete("/api/services/:id", (req, res) => {
 
 // start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
