@@ -1,19 +1,26 @@
-const Database = require("better-sqlite3");
+const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
 
-const db = new Database("services.db");
+const dbPath = path.join(__dirname, "database.sqlite");
 
-// Creating a table if it doesn't exist(if not exists helps in this)
-//autoincrement make ids automatically
-//not null - those fields must be provided 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS services (
-    id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    title TEXT NOT NULL,
-    category TEXT NOT NULL,
-    description TEXT,
-    url TEXT,
-    created_at TEXT DEFAULT (datetime('now'))
-  );
-`);
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) {
+    console.error("Database connection failed:", err.message);
+  } else {
+    console.log("Connected to SQLite database");
+  }
+});
+
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS services (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      category TEXT NOT NULL,
+      description TEXT,
+      url TEXT
+    )
+  `);
+});
 
 module.exports = db;

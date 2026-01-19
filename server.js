@@ -42,19 +42,23 @@ app.get("/api/health", (req, res) => {
 app.get("/api/services", (req, res) => {
   const category = (req.query.category || "").trim();
 
-  let rows;
-  if (!category) {
-    rows = db.prepare("SELECT * FROM services ORDER BY id DESC").all();
-  } else {
-    rows = db
-      .prepare(
-        "SELECT * FROM services WHERE LOWER(category)=LOWER(?) ORDER BY id DESC"
-      )
-      .all(category);
+  let sql = "SELECT * FROM services ORDER BY id DESC";
+  let params = [];
+
+  if (category) {
+    sql =
+      "SELECT * FROM services WHERE LOWER(category)=LOWER(?) ORDER BY id DESC";
+    params.push(category);
   }
 
-  res.json(rows);
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
 });
+
 
 // POST /api/services
 // inserts new row and will return 201 created
