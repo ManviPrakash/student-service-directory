@@ -14,11 +14,13 @@
   "author": "Manvi",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "helmet": "^8.1.0",
-    "sqlite3": "^5.1.7"
-  },
+  "cors": "^2.8.5",
+  "express": "^4.19.2",
+  "helmet": "^8.1.0",
+  "sqlite3": "^5.1.7",
+  "debug": "^4.3.4"
+}
+,
   "devDependencies": {
     "nodemon": "^3.1.11"
   }
