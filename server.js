@@ -162,5 +162,5 @@ app.delete("/api/services/:id", (req, res) => {
 
 // start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port http://localhost:${PORT}`);
 });
